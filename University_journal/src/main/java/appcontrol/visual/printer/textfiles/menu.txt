@@ -1,0 +1,13 @@
+
+
+ *** UNIVERSITY JOURNAL ***
+
+         𝙲𝚑𝚘𝚘𝚜𝚎 𝚘𝚙𝚝𝚒𝚘𝚗:
+-1- Manage students
+-2- Manage groups
+-3- Manage grades
+-4- Manage teachers
+-5- Manage subjects
+-6- Manage schedule
+
+-𝙴- 𝙴𝚡𝚒𝚝 𝚝𝚑𝚎 𝚙𝚛𝚘𝚐𝚛𝚊𝚖

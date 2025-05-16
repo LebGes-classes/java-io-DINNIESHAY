@@ -1,0 +1,7 @@
+
+
+           MANAGE SUBJECTS
+-1- Add subject
+-2- Get information about subjects
+
+-𝙱- 𝙶𝚘 𝚋𝚊𝚌𝚔 𝚝𝚘 𝚖𝚎𝚗𝚞
