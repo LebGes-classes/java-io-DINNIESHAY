@@ -17,12 +17,12 @@ public class Student implements Serializable {
 
     public Student() {}
 
-    public Student(int id, String fullName, int groupId, String status, Map<Subject, ArrayList<Integer>> grades) {
+    public Student(int id, String fullName, int groupId, String status) {
         this.id = id;
         this.fullName = fullName;
         this.groupId = groupId;
         this.status = status;
-        this.grades = grades;
+        this.grades = null;
     }
 
     public int getId() {
