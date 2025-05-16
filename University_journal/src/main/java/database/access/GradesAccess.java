@@ -9,7 +9,7 @@ import university.grade.Grade;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class GradesAccess implements ExcelAccess {
+public class GradesAccess implements ExcelAccess<Grade> {
 
     private static Sheet gradesSheet;
 
@@ -76,8 +76,11 @@ public class GradesAccess implements ExcelAccess {
     }
 
     private int getMaxId() {
+        int maxId = 0;
         ArrayList<Grade> grades = getAll();
-        int maxId = grades.getLast().getId();
+        if (grades != null) {
+            maxId = grades.getLast().getId();
+        }
 
         return maxId;
     }

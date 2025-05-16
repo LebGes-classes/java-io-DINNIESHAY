@@ -9,7 +9,7 @@ import database.connection.ExcelDataBase;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class SubjectsAccess implements ExcelAccess {
+public class SubjectsAccess implements ExcelAccess<Subject> {
 
     private static Sheet subjectsSheet;
 
@@ -71,9 +71,13 @@ public class SubjectsAccess implements ExcelAccess {
     }
 
     private int getMaxId() {
-        if (subjectsSheet.getLastRowNum() < 1) return 0;
-        Row lastRow = subjectsSheet.getRow(subjectsSheet.getLastRowNum());
-        return (int) lastRow.getCell(0).getNumericCellValue();
+        int maxId = 0;
+        ArrayList<Subject> subjects = getAll();
+        if (subjects != null) {
+            maxId = subjects.getLast().getId();
+        }
+
+        return maxId;
     }
 
     private int getRowIndex(Subject subject) {

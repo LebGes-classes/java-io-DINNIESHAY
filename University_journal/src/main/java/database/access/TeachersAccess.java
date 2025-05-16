@@ -9,7 +9,7 @@ import database.connection.ExcelDataBase;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class TeachersAccess implements ExcelAccess {
+public class TeachersAccess implements ExcelAccess<Teacher> {
 
     private static Sheet teachersSheet;
 
@@ -22,7 +22,7 @@ public class TeachersAccess implements ExcelAccess {
         Iterator<Row> iterator = teachersSheet.iterator();
 
         if (iterator.hasNext()) {
-            iterator.next(); // Пропускаем заголовок
+            iterator.next();
         }
 
         while (iterator.hasNext()) {
@@ -77,9 +77,13 @@ public class TeachersAccess implements ExcelAccess {
     }
 
     private int getMaxId() {
-        if (teachersSheet.getLastRowNum() < 1) return 0;
-        Row lastRow = teachersSheet.getRow(teachersSheet.getLastRowNum());
-        return (int) lastRow.getCell(0).getNumericCellValue();
+        int maxId = 0;
+        ArrayList<Teacher> teachers = getAll();
+        if (teachers != null) {
+            maxId = teachers.getLast().getId();
+        }
+
+        return maxId;
     }
 
     private int getRowIndex(Teacher teacher) {

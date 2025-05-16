@@ -9,7 +9,7 @@ import database.connection.ExcelDataBase;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class GroupsAccess implements ExcelAccess {
+public class GroupsAccess implements ExcelAccess<Group> {
 
     private static Sheet groupsSheet;
 
@@ -71,8 +71,11 @@ public class GroupsAccess implements ExcelAccess {
     }
 
     private int getMaxId() {
+        int maxId = 0;
         ArrayList<Group> groups = getAll();
-        int maxId = groups.getLast().getId();
+        if (groups != null) {
+            maxId = groups.getLast().getId();
+        }
 
         return maxId;
     }
