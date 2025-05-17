@@ -9,7 +9,7 @@ import database.connection.ExcelDataBase;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class StudentsAccess implements ExcelAccess<Student> {
+public class StudentsAccess {
 
     private static Sheet studentsSheet;
 
@@ -17,7 +17,7 @@ public class StudentsAccess implements ExcelAccess<Student> {
         studentsSheet = sheet;
     }
 
-    public ArrayList<Student> getAll() {
+    public static ArrayList<Student> getAll() {
         ArrayList<Student> students = new ArrayList<>();
         Iterator<Row> iterator = studentsSheet.iterator();
 
@@ -27,19 +27,29 @@ public class StudentsAccess implements ExcelAccess<Student> {
 
         while (iterator.hasNext()) {
             Row currRow = iterator.next();
-            int studentId = (int) currRow.getCell(0).getNumericCellValue();
-            String fullName = currRow.getCell(1).getStringCellValue();
-            int groupId = (int) currRow.getCell(2).getNumericCellValue();
-            String status = currRow.getCell(3).getStringCellValue();
 
-            Student student = new Student(studentId, fullName, groupId, status);
-            students.add(student);
+            Cell idCell = currRow.getCell(0);
+            Cell nameCell = currRow.getCell(1);
+
+            if (idCell != null && nameCell != null) {
+                try {
+                    int studentId = (int) currRow.getCell(0).getNumericCellValue();
+                    String fullName = currRow.getCell(1).getStringCellValue();
+                    int groupId = (int) currRow.getCell(2).getNumericCellValue();
+                    String status = currRow.getCell(3).getStringCellValue();
+
+                    Student student = new Student(studentId, fullName, groupId, status);
+                    students.add(student);
+                } catch (Exception e) {
+                    System.out.println("Error reading group data at row " + currRow.getRowNum());
+                }
+            }
         }
 
         return students;
     }
 
-    public void add(Student student) {
+    public static void add(Student student) {
         int newRowIndex = studentsSheet.getLastRowNum() + 1;
         Row newRow = studentsSheet.createRow(newRowIndex);
 
@@ -76,10 +86,10 @@ public class StudentsAccess implements ExcelAccess<Student> {
         }
     }
 
-    private int getMaxId() {
+    private static int getMaxId() {
         int maxId = 0;
         ArrayList<Student> students = getAll();
-        if (students != null) {
+        if (!students.isEmpty()) {
             maxId = students.getLast().getId();
         }
 

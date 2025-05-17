@@ -9,7 +9,7 @@ import database.connection.ExcelDataBase;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class GroupsAccess implements ExcelAccess<Group> {
+public class GroupsAccess {
 
     private static Sheet groupsSheet;
 
@@ -17,7 +17,7 @@ public class GroupsAccess implements ExcelAccess<Group> {
         groupsSheet = sheet;
     }
 
-    public ArrayList<Group> getAll() {
+    public static ArrayList<Group> getAll() {
         ArrayList<Group> groups = new ArrayList<>();
         Iterator<Row> iterator = groupsSheet.iterator();
 
@@ -27,17 +27,27 @@ public class GroupsAccess implements ExcelAccess<Group> {
 
         while (iterator.hasNext()) {
             Row currRow = iterator.next();
-            int groupId = (int) currRow.getCell(0).getNumericCellValue();
-            String groupName = currRow.getCell(1).getStringCellValue();
 
-            Group group = new Group(groupId, groupName);
-            groups.add(group);
+            Cell idCell = currRow.getCell(0);
+            Cell nameCell = currRow.getCell(1);
+
+            if (idCell != null && nameCell != null) {
+                try {
+                    int groupId = (int) idCell.getNumericCellValue();
+                    String groupName = nameCell.getStringCellValue();
+
+                    Group group = new Group(groupId, groupName);
+                    groups.add(group);
+                } catch (Exception e) {
+                    System.out.println("Error reading group data at row " + currRow.getRowNum());
+                }
+            }
         }
 
         return groups;
     }
 
-    public void add(Group group) {
+    public static void add(Group group) {
         int newRowIndex = groupsSheet.getLastRowNum() + 1;
         Row newRow = groupsSheet.createRow(newRowIndex);
 
@@ -70,10 +80,10 @@ public class GroupsAccess implements ExcelAccess<Group> {
         }
     }
 
-    private int getMaxId() {
+    private static int getMaxId() {
         int maxId = 0;
         ArrayList<Group> groups = getAll();
-        if (groups != null) {
+        if (!groups.isEmpty()) {
             maxId = groups.getLast().getId();
         }
 

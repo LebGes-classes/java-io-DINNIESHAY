@@ -27,11 +27,21 @@ public class SubjectsAccess implements ExcelAccess<Subject> {
 
         while (iterator.hasNext()) {
             Row currRow = iterator.next();
-            int subjectId = (int) currRow.getCell(0).getNumericCellValue();
-            String subjectName = currRow.getCell(1).getStringCellValue();
 
-            Subject subject = new Subject(subjectId, subjectName);
-            subjects.add(subject);
+            Cell idCell = currRow.getCell(0);
+            Cell nameCell = currRow.getCell(1);
+
+            if (idCell != null && nameCell != null) {
+                try {
+                    int subjectId = (int) currRow.getCell(0).getNumericCellValue();
+                    String subjectName = currRow.getCell(1).getStringCellValue();
+
+                    Subject subject = new Subject(subjectId, subjectName);
+                    subjects.add(subject);
+                } catch (Exception e) {
+                    System.out.println("Error reading group data at row " + currRow.getRowNum());
+                }
+            }
         }
 
         return subjects;
@@ -73,7 +83,7 @@ public class SubjectsAccess implements ExcelAccess<Subject> {
     private int getMaxId() {
         int maxId = 0;
         ArrayList<Subject> subjects = getAll();
-        if (subjects != null) {
+        if (!subjects.isEmpty()) {
             maxId = subjects.getLast().getId();
         }
 

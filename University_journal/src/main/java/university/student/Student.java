@@ -22,6 +22,12 @@ public class Student implements Serializable {
         this.fullName = fullName;
         this.groupId = groupId;
         this.status = status;
+    }
+
+    public Student(String fullName, int groupId, String status) {
+        this.fullName = fullName;
+        this.groupId = groupId;
+        this.status = status;
         this.grades = null;
     }
 

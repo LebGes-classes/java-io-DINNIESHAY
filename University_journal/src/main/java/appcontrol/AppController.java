@@ -3,6 +3,7 @@ package appcontrol;
 import appcontrol.manager.*;
 import appcontrol.visual.printer.Printer;
 import appcontrol.visual.services.Services;
+import database.connection.ExcelDataBase;
 
 public class AppController {
 
@@ -10,6 +11,7 @@ public class AppController {
 
     public void openApp() {
 
+        ExcelDataBase.readExcelFile();
 
         boolean isRunning = true;
 

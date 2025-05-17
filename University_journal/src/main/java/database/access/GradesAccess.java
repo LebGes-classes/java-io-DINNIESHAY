@@ -28,12 +28,21 @@ public class GradesAccess implements ExcelAccess<Grade> {
         while (iterator.hasNext()) {
             Row currRow = iterator.next();
 
-            int gradeId = (int) currRow.getCell(0).getNumericCellValue();
-            int subjectId = (int) currRow.getCell(1).getNumericCellValue();
-            int studentId = (int) currRow.getCell(2).getNumericCellValue();
-            Grade grade = new Grade(gradeId, subjectId, studentId);
+            Cell idCell = currRow.getCell(0);
+            Cell nameCell = currRow.getCell(1);
 
-            grades.add(grade);
+            if (idCell != null && nameCell != null) {
+                try {
+                    int gradeId = (int) currRow.getCell(0).getNumericCellValue();
+                    int subjectId = (int) currRow.getCell(1).getNumericCellValue();
+                    int studentId = (int) currRow.getCell(2).getNumericCellValue();
+
+                    Grade grade = new Grade(gradeId, subjectId, studentId);
+                    grades.add(grade);
+                } catch (Exception e) {
+                    System.out.println("Error reading group data at row " + currRow.getRowNum());
+                }
+            }
         }
 
         return grades;
@@ -78,7 +87,7 @@ public class GradesAccess implements ExcelAccess<Grade> {
     private int getMaxId() {
         int maxId = 0;
         ArrayList<Grade> grades = getAll();
-        if (grades != null) {
+        if (!grades.isEmpty()) {
             maxId = grades.getLast().getId();
         }
 

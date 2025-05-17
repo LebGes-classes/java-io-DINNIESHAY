@@ -27,13 +27,23 @@ public class TeachersAccess implements ExcelAccess<Teacher> {
 
         while (iterator.hasNext()) {
             Row currRow = iterator.next();
-            int teacherId = (int) currRow.getCell(0).getNumericCellValue();
-            String fullName = currRow.getCell(1).getStringCellValue();
-            int subjectId = (int) currRow.getCell(2).getNumericCellValue();
-            String status = currRow.getCell(3).getStringCellValue();
 
-            Teacher teacher = new Teacher(teacherId, fullName, subjectId, status);
-            teachers.add(teacher);
+            Cell idCell = currRow.getCell(0);
+            Cell nameCell = currRow.getCell(1);
+
+            if (idCell != null && nameCell != null) {
+                try {
+                    int teacherId = (int) currRow.getCell(0).getNumericCellValue();
+                    String fullName = currRow.getCell(1).getStringCellValue();
+                    int subjectId = (int) currRow.getCell(2).getNumericCellValue();
+                    String status = currRow.getCell(3).getStringCellValue();
+
+                    Teacher teacher = new Teacher(teacherId, fullName, subjectId, status);
+                    teachers.add(teacher);
+                } catch (Exception e) {
+                    System.out.println("Error reading group data at row " + currRow.getRowNum());
+                }
+            }
         }
 
         return teachers;
@@ -79,7 +89,7 @@ public class TeachersAccess implements ExcelAccess<Teacher> {
     private int getMaxId() {
         int maxId = 0;
         ArrayList<Teacher> teachers = getAll();
-        if (teachers != null) {
+        if (!teachers.isEmpty()) {
             maxId = teachers.getLast().getId();
         }
 
