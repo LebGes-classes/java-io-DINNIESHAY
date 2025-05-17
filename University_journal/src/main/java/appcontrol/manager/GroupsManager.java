@@ -2,9 +2,7 @@ package appcontrol.manager;
 
 import appcontrol.visual.services.Services;
 import database.access.GroupsAccess;
-import database.access.StudentsAccess;
 import university.group.Group;
-import university.student.Student;
 
 import java.util.ArrayList;
 
@@ -29,10 +27,8 @@ public class GroupsManager {
     }
 
     public static boolean noGroups() {
-        boolean noGroups;
-
         ArrayList<Group> groups = GroupsAccess.getAll();
-        noGroups = groups.isEmpty();
+        boolean noGroups = groups.isEmpty();
 
         return noGroups;
     }

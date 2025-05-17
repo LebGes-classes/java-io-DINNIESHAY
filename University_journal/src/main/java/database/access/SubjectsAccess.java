@@ -9,7 +9,7 @@ import database.connection.ExcelDataBase;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class SubjectsAccess implements ExcelAccess<Subject> {
+public class SubjectsAccess {
 
     private static Sheet subjectsSheet;
 
@@ -17,7 +17,7 @@ public class SubjectsAccess implements ExcelAccess<Subject> {
         subjectsSheet = sheet;
     }
 
-    public ArrayList<Subject> getAll() {
+    public static ArrayList<Subject> getAll() {
         ArrayList<Subject> subjects = new ArrayList<>();
         Iterator<Row> iterator = subjectsSheet.iterator();
 
@@ -47,7 +47,7 @@ public class SubjectsAccess implements ExcelAccess<Subject> {
         return subjects;
     }
 
-    public void add(Subject subject) {
+    public static void add(Subject subject) {
         int newRowIndex = subjectsSheet.getLastRowNum() + 1;
         Row newRow = subjectsSheet.createRow(newRowIndex);
 
@@ -57,7 +57,7 @@ public class SubjectsAccess implements ExcelAccess<Subject> {
         ExcelDataBase.saveExcelFile();
     }
 
-    public void update(Subject subject) {
+    public static void update(Subject subject) {
         int rowIndex = getRowIndex(subject);
         if (rowIndex != -1) {
             Row row = subjectsSheet.getRow(rowIndex);
@@ -67,7 +67,7 @@ public class SubjectsAccess implements ExcelAccess<Subject> {
         }
     }
 
-    public void delete(Subject subject) {
+    public static void delete(Subject subject) {
         int rowIndex = getRowIndex(subject);
         if (rowIndex != -1) {
             subjectsSheet.removeRow(subjectsSheet.getRow(rowIndex));
@@ -80,7 +80,7 @@ public class SubjectsAccess implements ExcelAccess<Subject> {
         }
     }
 
-    private int getMaxId() {
+    private static int getMaxId() {
         int maxId = 0;
         ArrayList<Subject> subjects = getAll();
         if (!subjects.isEmpty()) {
@@ -90,7 +90,7 @@ public class SubjectsAccess implements ExcelAccess<Subject> {
         return maxId;
     }
 
-    private int getRowIndex(Subject subject) {
+    private static int getRowIndex(Subject subject) {
         for (int i = 1; i <= subjectsSheet.getLastRowNum(); i++) {
             Row row = subjectsSheet.getRow(i);
             if (row != null) {

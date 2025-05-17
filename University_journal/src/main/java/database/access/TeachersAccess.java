@@ -9,7 +9,7 @@ import database.connection.ExcelDataBase;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class TeachersAccess implements ExcelAccess<Teacher> {
+public class TeachersAccess {
 
     private static Sheet teachersSheet;
 

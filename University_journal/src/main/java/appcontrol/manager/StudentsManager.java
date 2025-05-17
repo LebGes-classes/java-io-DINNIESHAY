@@ -1,9 +1,7 @@
 package appcontrol.manager;
 
 import appcontrol.visual.services.Services;
-import database.access.GroupsAccess;
 import database.access.StudentsAccess;
-import university.group.Group;
 import university.student.Student;
 
 import java.util.ArrayList;
@@ -121,10 +119,8 @@ public class StudentsManager {
     }
 
     private static boolean noStudents() {
-        boolean noStudents;
-
         ArrayList<Student> students = StudentsAccess.getAll();
-        noStudents = students.isEmpty();
+        boolean noStudents = students.isEmpty();
 
         return noStudents;
     }

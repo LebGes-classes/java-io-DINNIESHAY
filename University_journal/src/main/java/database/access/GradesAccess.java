@@ -9,7 +9,7 @@ import university.grade.Grade;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class GradesAccess implements ExcelAccess<Grade> {
+public class GradesAccess {
 
     private static Sheet gradesSheet;
 
