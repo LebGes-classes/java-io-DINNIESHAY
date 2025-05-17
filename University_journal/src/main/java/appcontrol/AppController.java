@@ -38,7 +38,7 @@ public class AppController {
                 case "6":
                     manageSchedule();
                     break;
-                case "E", "e":
+                case "E", "e", "У", "у":
                     isRunning = false;
                     break;
                 default:
@@ -66,9 +66,12 @@ public class AppController {
                     StudentsManager.deductStudent();
                     break;
                 case "4":
-                    StudentsManager.changeStudentInfo();
+                    StudentsManager.sendOnAcademicLeave();
                     break;
                 case "5":
+                    StudentsManager.changeStudentName();
+                    break;
+                case "6":
                     StudentsManager.printInfo();
                     break;
                 case "B", "b", "И", "и":

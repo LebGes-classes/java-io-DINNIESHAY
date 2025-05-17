@@ -49,6 +49,25 @@ public class StudentsAccess {
         return students;
     }
 
+    public static Student getById(int id) {
+        Student student = new Student();
+
+        for (int i = 1; i <= studentsSheet.getLastRowNum(); i++) {
+            Row row = studentsSheet.getRow(i);
+            if (row != null) {
+                Cell idCell = row.getCell(0);
+                if (idCell != null && (int) idCell.getNumericCellValue() == id) {
+                    student.setId(id);
+                    student.setFullName(row.getCell(1).getStringCellValue());
+                    student.setGroupId((int) row.getCell(2).getNumericCellValue());
+                    student.setStatus(row.getCell(3).getStringCellValue());
+                }
+            }
+        }
+
+        return student;
+    }
+
     public static void add(Student student) {
         int newRowIndex = studentsSheet.getLastRowNum() + 1;
         Row newRow = studentsSheet.createRow(newRowIndex);
@@ -61,7 +80,7 @@ public class StudentsAccess {
         ExcelDataBase.saveExcelFile();
     }
 
-    public void update(Student student) {
+    public static void update(Student student) {
         int rowIndex = getRowIndex(student);
         if (rowIndex != -1) {
             Row row = studentsSheet.getRow(rowIndex);
@@ -73,7 +92,7 @@ public class StudentsAccess {
         }
     }
 
-    public void delete(Student student) {
+    public static void delete(Student student) {
         int rowIndex = getRowIndex(student);
         if (rowIndex != -1) {
             studentsSheet.removeRow(studentsSheet.getRow(rowIndex));
@@ -96,7 +115,7 @@ public class StudentsAccess {
         return maxId;
     }
 
-    private int getRowIndex(Student student) {
+    private static int getRowIndex(Student student) {
         for (int i = 1; i <= studentsSheet.getLastRowNum(); i++) {
             Row row = studentsSheet.getRow(i);
             if (row != null) {

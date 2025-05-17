@@ -4,7 +4,8 @@
 -1- Add student
 -2- Transfer student to another group
 -3- Deduct student
--4- Change information about student
--5- Get information about all students
+-4- Send student on academic leave
+-5- Change student's name
+-6- Get information about all students
 
 -𝙱- 𝙶𝚘 𝚋𝚊𝚌𝚔 𝚝𝚘 𝚖𝚎𝚗𝚞
