@@ -2,6 +2,6 @@
 
            MANAGE GROUPS
 -1- Add group
--2- Get information about group
+-2- Get information about groups
 
 -𝙱- 𝙶𝚘 𝚋𝚊𝚌𝚔 𝚝𝚘 𝚖𝚎𝚗𝚞
