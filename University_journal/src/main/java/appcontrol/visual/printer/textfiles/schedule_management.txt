@@ -1,8 +1,0 @@
-
-
-           MANAGE SCHEDULE
--1- Change schedule for group
--2- Show group's schedule
--3- Show teacher's schedule
-
--𝙱- 𝙶𝚘 𝚋𝚊𝚌𝚔 𝚝𝚘 𝚖𝚎𝚗𝚞

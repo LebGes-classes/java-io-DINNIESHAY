@@ -8,6 +8,6 @@
 -3- Manage grades
 -4- Manage teachers
 -5- Manage subjects
--6- Manage schedule
+-6- Show schedule of group
 
 -𝙴- 𝙴𝚡𝚒𝚝 𝚝𝚑𝚎 𝚙𝚛𝚘𝚐𝚛𝚊𝚖

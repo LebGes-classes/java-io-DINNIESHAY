@@ -47,6 +47,23 @@ public class GroupsAccess {
         return groups;
     }
 
+    public static Group getById(int id) {
+        Group group = new Group();
+
+        for (int i = 1; i <= groupsSheet.getLastRowNum(); i++) {
+            Row row = groupsSheet.getRow(i);
+            if (row != null) {
+                Cell idCell = row.getCell(0);
+                if (idCell != null && (int) idCell.getNumericCellValue() == id) {
+                    group.setId(id);
+                    group.setName(row.getCell(1).getStringCellValue());
+                }
+            }
+        }
+
+        return group;
+    }
+
     public static void add(Group group) {
         int newRowIndex = groupsSheet.getLastRowNum() + 1;
         Row newRow = groupsSheet.createRow(newRowIndex);

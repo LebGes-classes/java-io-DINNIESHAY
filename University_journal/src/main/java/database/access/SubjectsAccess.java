@@ -3,7 +3,6 @@ package database.access;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import university.grade.Grade;
 import university.subject.Subject;
 import database.connection.ExcelDataBase;
 
@@ -58,6 +57,23 @@ public class SubjectsAccess {
                 if (idCell != null && (int) idCell.getNumericCellValue() == id) {
                     subject.setId(id);
                     subject.setName(row.getCell(1).getStringCellValue());
+                }
+            }
+        }
+
+        return subject;
+    }
+
+    public static Subject getByName(String name) {
+        Subject subject = new Subject();
+
+        for (int i = 1; i <= subjectsSheet.getLastRowNum(); i++) {
+            Row row = subjectsSheet.getRow(i);
+            if (row != null) {
+                Cell nameCell = row.getCell(1);
+                if (nameCell != null && nameCell.getStringCellValue().equals(name)) {
+                    subject.setId((int) row.getCell(0).getNumericCellValue());
+                    subject.setName(name);
                 }
             }
         }

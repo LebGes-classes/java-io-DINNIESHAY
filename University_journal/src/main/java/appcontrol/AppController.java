@@ -36,7 +36,7 @@ public class AppController {
                     manageSubjects();
                     break;
                 case "6":
-                    manageSchedule();
+                    ScheduleManager.printScheduleForGroup();
                     break;
                 case "E", "e", "У", "у":
                     isRunning = false;
@@ -180,32 +180,6 @@ public class AppController {
                     break;
                 case "2":
                     SubjectsManager.printInfo();
-                    break;
-                case "B", "b", "И", "и":
-                    managing = false;
-                    break;
-                default:
-                    System.out.println("Wrong choice. Try again\n");
-            }
-        }
-    }
-
-    private void manageSchedule() {
-        boolean managing = true;
-
-        while (managing) {
-            printer.printScheduleManagement();
-            String choice = Services.getInput();
-
-            switch (choice) {
-                case "1":
-                    ScheduleManager.changeSchedule();
-                    break;
-                case "2":
-                    ScheduleManager.printScheduleForGroup();
-                    break;
-                case "3":
-                    ScheduleManager.printScheduleForTeacher();
                     break;
                 case "B", "b", "И", "и":
                     managing = false;
