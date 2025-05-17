@@ -18,6 +18,12 @@ public class Teacher implements Serializable {
         this.status = status;
     }
 
+    public Teacher(String fullName, int subjectId, String status) {
+        this.fullName = fullName;
+        this.subjectId = subjectId;
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }
@@ -48,5 +54,15 @@ public class Teacher implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher " +
+                "id: " + id +
+                ", fullName: " + fullName +
+                ", subjectId: " + subjectId +
+                ", status: " + status +
+                "\n";
     }
 }

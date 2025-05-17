@@ -11,10 +11,12 @@ public class StudentsManager {
     public static void addStudent() {
         System.out.println("Enter student's full name:");
         String fullName = Services.getInput();
+
         System.out.println("Choose student's group:");
         if (GroupsManager.noGroups()) {
             System.out.println("No groups");
             System.out.println("\nPress any key to go back");
+            Services.getInput();
             return;
         }
 
@@ -30,6 +32,7 @@ public class StudentsManager {
         if (noStudents()) {
             System.out.println("No students");
             System.out.println("\nPress any key to go back");
+            Services.getInput();
             return;
         }
 
@@ -42,6 +45,7 @@ public class StudentsManager {
         if (GroupsManager.noGroups()) {
             System.out.println("No groups");
             System.out.println("\nPress any key to go back");
+            Services.getInput();
             return;
         }
 
@@ -58,6 +62,7 @@ public class StudentsManager {
         if (noStudents()) {
             System.out.println("No students");
             System.out.println("\nPress any key to go back");
+            Services.getInput();
             return;
         }
 
@@ -75,6 +80,7 @@ public class StudentsManager {
         if (noStudents()) {
             System.out.println("No students");
             System.out.println("\nPress any key to go back");
+            Services.getInput();
             return;
         }
 
@@ -93,6 +99,7 @@ public class StudentsManager {
         if (noStudents()) {
             System.out.println("No students");
             System.out.println("\nPress any key to go back");
+            Services.getInput();
             return;
         }
 

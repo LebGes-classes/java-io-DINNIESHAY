@@ -150,9 +150,12 @@ public class AppController {
                     TeachersManager.fireTeacher();
                     break;
                 case "3":
-                    TeachersManager.changeInfo();
+                    TeachersManager.changeName();
                     break;
                 case "4":
+                    TeachersManager.changeSubject();
+                    break;
+                case "5":
                     TeachersManager.printInfo();
                     break;
                 case "B", "b", "И", "и":

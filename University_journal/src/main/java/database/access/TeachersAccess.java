@@ -3,6 +3,7 @@ package database.access;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import university.student.Student;
 import university.teacher.Teacher;
 import database.connection.ExcelDataBase;
 
@@ -17,7 +18,7 @@ public class TeachersAccess {
         teachersSheet = sheet;
     }
 
-    public ArrayList<Teacher> getAll() {
+    public static ArrayList<Teacher> getAll() {
         ArrayList<Teacher> teachers = new ArrayList<>();
         Iterator<Row> iterator = teachersSheet.iterator();
 
@@ -49,7 +50,26 @@ public class TeachersAccess {
         return teachers;
     }
 
-    public void add(Teacher teacher) {
+    public static Teacher getById(int id) {
+        Teacher teacher = new Teacher();
+
+        for (int i = 1; i <= teachersSheet.getLastRowNum(); i++) {
+            Row row = teachersSheet.getRow(i);
+            if (row != null) {
+                Cell idCell = row.getCell(0);
+                if (idCell != null && (int) idCell.getNumericCellValue() == id) {
+                    teacher.setId(id);
+                    teacher.setFullName(row.getCell(1).getStringCellValue());
+                    teacher.setSubjectId((int) row.getCell(2).getNumericCellValue());
+                    teacher.setStatus(row.getCell(3).getStringCellValue());
+                }
+            }
+        }
+
+        return teacher;
+    }
+
+    public static void add(Teacher teacher) {
         int newRowIndex = teachersSheet.getLastRowNum() + 1;
         Row newRow = teachersSheet.createRow(newRowIndex);
 
@@ -61,7 +81,7 @@ public class TeachersAccess {
         ExcelDataBase.saveExcelFile();
     }
 
-    public void update(Teacher teacher) {
+    public static void update(Teacher teacher) {
         int rowIndex = getRowIndex(teacher);
         if (rowIndex != -1) {
             Row row = teachersSheet.getRow(rowIndex);
@@ -73,7 +93,7 @@ public class TeachersAccess {
         }
     }
 
-    public void delete(Teacher teacher) {
+    public static void delete(Teacher teacher) {
         int rowIndex = getRowIndex(teacher);
         if (rowIndex != -1) {
             teachersSheet.removeRow(teachersSheet.getRow(rowIndex));
@@ -86,7 +106,7 @@ public class TeachersAccess {
         }
     }
 
-    private int getMaxId() {
+    private static int getMaxId() {
         int maxId = 0;
         ArrayList<Teacher> teachers = getAll();
         if (!teachers.isEmpty()) {
@@ -96,7 +116,7 @@ public class TeachersAccess {
         return maxId;
     }
 
-    private int getRowIndex(Teacher teacher) {
+    private static int getRowIndex(Teacher teacher) {
         for (int i = 1; i <= teachersSheet.getLastRowNum(); i++) {
             Row row = teachersSheet.getRow(i);
             if (row != null) {

@@ -3,7 +3,8 @@
            MANAGE TEACHERS
 -1- Hire teacher
 -2- Fire teacher
--3- Change information about teacher
--4- Get information about all teachers
+-3- Change teacher's full name
+-4- Change teacher's subject
+-5- Get information about all teachers
 
 -𝙱- 𝙶𝚘 𝚋𝚊𝚌𝚔 𝚝𝚘 𝚖𝚎𝚗𝚞
