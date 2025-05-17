@@ -3,7 +3,7 @@
            MANAGE GRADES
 -1- Add grades for group
 -2- Add grades for student
--2- Get information about grades in group
--3- Get information about student's grades
+-3- Get information about grades of subject
+-4- Get information about student's grades
 
 -𝙱- 𝙶𝚘 𝚋𝚊𝚌𝚔 𝚝𝚘 𝚖𝚎𝚗𝚞

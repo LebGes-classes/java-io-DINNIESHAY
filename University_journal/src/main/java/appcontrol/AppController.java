@@ -115,13 +115,13 @@ public class AppController {
 
             switch (choice) {
                 case "1":
-                    GradesManager.addGradeForGroup();
+                    GradesManager.addGradesForGroup();
                     break;
                 case "2":
                     GradesManager.addGradeForStudent();
                     break;
                 case "3":
-                    GradesManager.printGradesOfGroup();
+                    GradesManager.printGradesOfSubject();
                     break;
                 case "4":
                     GradesManager.printGradesOfStudent();

@@ -49,6 +49,50 @@ public class StudentsAccess {
         return students;
     }
 
+    public static ArrayList<Student> getAllInGroup(int groupId) {
+        ArrayList<Student> students = new ArrayList<>();
+
+        for (int i = 1; i <= studentsSheet.getLastRowNum(); i++) {
+            Row row = studentsSheet.getRow(i);
+            if (row != null) {
+                Cell groupIdCell = row.getCell(2);
+                Cell statusCell = row.getCell(3);
+                if (groupIdCell != null && (int) groupIdCell.getNumericCellValue() == groupId && statusCell.getStringCellValue().equals("Studying")) {
+                    Student student = new Student();
+                    student.setId((int) row.getCell(0).getNumericCellValue());
+                    student.setFullName(row.getCell(1).getStringCellValue());
+                    student.setGroupId(groupId);
+                    student.setStatus(row.getCell(3).getStringCellValue());
+                    students.add(student);
+                }
+            }
+        }
+
+        return students;
+    }
+
+    public static ArrayList<Student> getAllStudying() {
+        ArrayList<Student> students = new ArrayList<>();
+
+        for (int i = 1; i <= studentsSheet.getLastRowNum(); i++) {
+            Row row = studentsSheet.getRow(i);
+            if (row != null) {
+                Cell statusCell = row.getCell(3);
+                if (statusCell != null && statusCell.getStringCellValue().equals("Studying")) {
+                    Student student = new Student();
+                    student.setId((int) row.getCell(0).getNumericCellValue());
+                    student.setFullName(row.getCell(1).getStringCellValue());
+                    student.setGroupId((int) row.getCell(2).getNumericCellValue());
+                    student.setStatus(row.getCell(3).getStringCellValue());
+                    students.add(student);
+                }
+            }
+        }
+
+        return students;
+    }
+
+
     public static Student getById(int id) {
         Student student = new Student();
 
