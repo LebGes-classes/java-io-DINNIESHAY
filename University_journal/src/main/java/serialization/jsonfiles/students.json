@@ -34,5 +34,29 @@
     "fullName": "Ильина Екатерина Анатольевна",
     "groupId": 1,
     "status": "Studying"
+  },
+  {
+    "id": 7,
+    "fullName": "Бабушкина Елизавета Петровна",
+    "groupId": 2,
+    "status": "Studying"
+  },
+  {
+    "id": 8,
+    "fullName": "Шаинов Леонид Владимирович",
+    "groupId": 3,
+    "status": "Studying"
+  },
+  {
+    "id": 9,
+    "fullName": "Балонина Ангелина Алексеевна",
+    "groupId": 4,
+    "status": "Studying"
+  },
+  {
+    "id": 10,
+    "fullName": "Иванов Иван Иванович",
+    "groupId": 5,
+    "status": "Studying"
   }
 ]
