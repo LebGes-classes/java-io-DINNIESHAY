@@ -1,11 +1,6 @@
 package university.student;
 
-import university.grade.Grade;
-
-import javax.security.auth.Subject;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Map;
 
 public class Student implements Serializable {
 
@@ -13,7 +8,6 @@ public class Student implements Serializable {
     private String fullName;
     private int groupId;
     private String status;
-    private Map<Subject, ArrayList<Integer>> grades;
 
     public Student() {}
 
@@ -28,7 +22,6 @@ public class Student implements Serializable {
         this.fullName = fullName;
         this.groupId = groupId;
         this.status = status;
-        this.grades = null;
     }
 
     public int getId() {
@@ -61,18 +54,6 @@ public class Student implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Map<Subject, ArrayList<Integer>> getGrades() {
-        return grades;
-    }
-
-    public void setGrades(Map<Subject, ArrayList<Integer>> grades) {
-        this.grades = grades;
-    }
-
-    public void addGrade(Grade newGrade) {
-
     }
 
     @Override

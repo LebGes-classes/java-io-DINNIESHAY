@@ -18,12 +18,12 @@ public class ExcelDataBase {
         try {
             file = new FileInputStream(FILE_PATH);
             workbook = new XSSFWorkbook(file);
-            GradesAccess gradesReader = new GradesAccess(workbook.getSheet("Grades"));
-            GroupsAccess groupsReader = new GroupsAccess(workbook.getSheet("Groups"));
-            ScheduleAccess scheduleReader = new ScheduleAccess(workbook.getSheet("Schedule"));
-            StudentsAccess studentsReader = new StudentsAccess(workbook.getSheet("Students"));
-            SubjectsAccess subjectsReader = new SubjectsAccess(workbook.getSheet("Subjects"));
-            TeachersAccess teachersReader = new TeachersAccess(workbook.getSheet("Teachers"));
+            SubjectsAccess.init(workbook.getSheet("Subjects"));
+            StudentsAccess.init(workbook.getSheet("Students"));
+            GroupsAccess.init(workbook.getSheet("Groups"));
+            TeachersAccess.init(workbook.getSheet("Teachers"));
+            GradesAccess.init(workbook.getSheet("Grades"));
+            ScheduleAccess.init(workbook.getSheet("Schedule"));
         } catch (IOException e) {
             throw new RuntimeException("Failed to read file: " + e.getMessage());
         }

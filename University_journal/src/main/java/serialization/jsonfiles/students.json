@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "fullName": "Шагиева Динара Ильназовна",
+    "groupId": 1,
+    "status": "Studying"
+  },
+  {
+    "id": 2,
+    "fullName": "Попова Анастасия Сергеевна",
+    "groupId": 1,
+    "status": "On academic leave"
+  },
+  {
+    "id": 3,
+    "fullName": "Волков Амин Рафисович",
+    "groupId": 2,
+    "status": "Expelled"
+  },
+  {
+    "id": 4,
+    "fullName": "Гайфуллина Алсу Рашидовна",
+    "groupId": 1,
+    "status": "Studying"
+  },
+  {
+    "id": 5,
+    "fullName": "Гафаров Тимур Бахтиярович",
+    "groupId": 1,
+    "status": "Studying"
+  },
+  {
+    "id": 6,
+    "fullName": "Ильина Екатерина Анатольевна",
+    "groupId": 1,
+    "status": "Studying"
+  }
+]

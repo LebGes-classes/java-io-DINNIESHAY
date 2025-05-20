@@ -1,6 +1,8 @@
 package database.access;
 
 import database.connection.ExcelDataBase;
+import serialization.JsonDeserializer;
+import serialization.JsonSerializer;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -10,10 +12,21 @@ import java.util.*;
 
 public class GradesAccess {
 
+    private GradesAccess() {};
     private static Sheet gradesSheet;
+    private static final String jsonFilePath = "University_journal/src/main/java/serialization/jsonfiles/grades.json";
 
-    public GradesAccess(Sheet sheet) {
+    public static void init(Sheet sheet) {
         gradesSheet = sheet;
+        writeToJson();
+    }
+
+    public static void writeToJson() {
+        JsonSerializer.writeToJsonFile(getAll(), jsonFilePath);
+    }
+
+    public static void loadFromJson() {
+        JsonDeserializer.readFromJsonFile(Grade.class, jsonFilePath);
     }
 
     public static ArrayList<Grade> getAll() {
@@ -159,6 +172,7 @@ public class GradesAccess {
         newRow.createCell(3).setCellValue(grade.getStudentId());
 
         ExcelDataBase.saveExcelFile();
+        writeToJson();
     }
 
     public static void update(Grade grade) {
@@ -170,6 +184,7 @@ public class GradesAccess {
             row.getCell(3).setCellValue(grade.getStudentId());
 
             ExcelDataBase.saveExcelFile();
+            writeToJson();
         }
     }
 
@@ -185,6 +200,7 @@ public class GradesAccess {
         }
 
         ExcelDataBase.saveExcelFile();
+        writeToJson();
     }
 
     private static int getMaxId() {

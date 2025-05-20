@@ -1,8 +1,11 @@
 package database.access;
 
+import serialization.JsonDeserializer;
+import serialization.JsonSerializer;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import university.grade.Grade;
 import university.group.Group;
 import database.connection.ExcelDataBase;
 
@@ -11,10 +14,21 @@ import java.util.Iterator;
 
 public class GroupsAccess {
 
+    private GroupsAccess() {};
     private static Sheet groupsSheet;
+    private static final String jsonFilePath = "University_journal/src/main/java/serialization/jsonfiles/groups.json";
 
-    public GroupsAccess(Sheet sheet) {
+    public static void init(Sheet sheet) {
         groupsSheet = sheet;
+        writeToJson();
+    }
+
+    public static void writeToJson() {
+        JsonSerializer.writeToJsonFile(getAll(), jsonFilePath);
+    }
+
+    public static void loadFromJson() {
+        JsonDeserializer.readFromJsonFile(Group.class, jsonFilePath);
     }
 
     public static ArrayList<Group> getAll() {
@@ -81,6 +95,7 @@ public class GroupsAccess {
             row.getCell(1).setCellValue(group.getName());
 
             ExcelDataBase.saveExcelFile();
+            writeToJson();
         }
     }
 
@@ -94,6 +109,7 @@ public class GroupsAccess {
             }
 
             ExcelDataBase.saveExcelFile();
+            writeToJson();
         }
     }
 

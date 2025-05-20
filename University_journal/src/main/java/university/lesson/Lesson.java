@@ -5,7 +5,9 @@ import database.access.TeachersAccess;
 import university.subject.Subject;
 import university.teacher.Teacher;
 
-public class Lesson {
+import java.io.Serializable;
+
+public class Lesson implements Serializable {
 
     private int subjectId;
     private int groupId;

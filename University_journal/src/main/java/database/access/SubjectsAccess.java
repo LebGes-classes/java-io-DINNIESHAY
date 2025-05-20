@@ -1,8 +1,11 @@
 package database.access;
 
+import serialization.JsonDeserializer;
+import serialization.JsonSerializer;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import university.grade.Grade;
 import university.subject.Subject;
 import database.connection.ExcelDataBase;
 
@@ -11,10 +14,21 @@ import java.util.Iterator;
 
 public class SubjectsAccess {
 
+    private SubjectsAccess() {};
     private static Sheet subjectsSheet;
+    private static final String jsonFilePath = "University_journal/src/main/java/serialization/jsonfiles/subjects.json";
 
-    public SubjectsAccess(Sheet sheet) {
+    public static void init(Sheet sheet) {
         subjectsSheet = sheet;
+        writeToJson();
+    }
+
+    public static void writeToJson() {
+        JsonSerializer.writeToJsonFile(getAll(), jsonFilePath);
+    }
+
+    public static void loadFromJson() {
+        JsonDeserializer.readFromJsonFile(Subject.class, jsonFilePath);
     }
 
     public static ArrayList<Subject> getAll() {
@@ -89,6 +103,7 @@ public class SubjectsAccess {
         newRow.createCell(1).setCellValue(subject.getName());
 
         ExcelDataBase.saveExcelFile();
+        writeToJson();
     }
 
     public static void update(Subject subject) {
@@ -98,6 +113,7 @@ public class SubjectsAccess {
             row.getCell(1).setCellValue(subject.getName());
 
             ExcelDataBase.saveExcelFile();
+            writeToJson();
         }
     }
 
@@ -111,6 +127,7 @@ public class SubjectsAccess {
             }
 
             ExcelDataBase.saveExcelFile();
+            writeToJson();
         }
     }
 
