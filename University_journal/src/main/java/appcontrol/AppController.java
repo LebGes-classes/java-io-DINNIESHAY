@@ -45,6 +45,7 @@ public class AppController {
                     System.out.println("Wrong choice. Try again.\n");
             }
         }
+        ExcelDataBase.closeExcelFile();
         System.out.println("Exiting the program...\n");
     }
 

@@ -25,16 +25,20 @@ public class ExcelDataBase {
             GradesAccess.init(workbook.getSheet("Grades"));
             ScheduleAccess.init(workbook.getSheet("Schedule"));
         } catch (IOException e) {
-            throw new RuntimeException("Failed to read file: " + e.getMessage());
+            throw new RuntimeException("Failed to read Excel file: " + e.getMessage());
         }
     }
 
     public static void closeExcelFile() {
         try {
-            file.close();
-            workbook.close();
+            if (workbook != null) {
+                workbook.close();
+            }
+            if (file != null) {
+                file.close();
+            }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to close Excel file", e);
         }
     }
 
@@ -49,7 +53,7 @@ public class ExcelDataBase {
             outputFile.close();
 
         } catch (IOException e) {
-            throw new RuntimeException("Failed to save file: " + e.getMessage());
+            throw new RuntimeException("Failed to save Excel file: " + e.getMessage());
         }
     }
 }
